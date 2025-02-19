@@ -1,0 +1,17 @@
+alias ll='ls -lah'
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias la='ls -A'
+alias l='ls -CF'
+alias gs='git status'
+alias vi='nvim'
+alias vim='nvim'
+alias rmrf='rm -rf'
+alias reload='source ~/.zshrc'
+alias tree='tree -la'
+
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
