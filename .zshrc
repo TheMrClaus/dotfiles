@@ -86,7 +86,10 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
 fi
 
 # Starship
-[[ -t 1 ]] && eval "$(starship init zsh)"
+#[[ -t 1 ]] && eval "$(starship init zsh)"
+
+#oh-my-posh
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/dracula.omp.json)"
 
 # NVM
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
