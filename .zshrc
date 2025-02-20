@@ -14,64 +14,36 @@ HISTSIZE=10000
 SAVEHIST=10000
 
 # ==============================
-# Completion System
-# ==============================
-autoload -Uz compinit
-zstyle ':completion:*' rehash true
-if [[ -n $ZDOTDIR && -f "$ZDOTDIR/.zcompdump" ]]; then
-  compinit -C
-else
-  compinit
-fi
-zmodload zsh/complist
-
-# ==============================
-# Key Bindings
-# ==============================
-bindkey "^R" history-incremental-search-backward
-# Ghostty fixes
-bindkey ";5D" backward-word
-bindkey ";5C" forward-word
-bindkey "^[[1;5D" backward-word
-bindkey "^[[1;5C" forward-word
-
-# ==============================
 # Environment Variables
 # ==============================
 export CLICOLOR=1
 export LS_COLORS=""
-export FZF_DEFAULT_OPTS="--height 40% --reverse --border"
 
 # Path Management
 export PATH="$HOME/.npm-global/bin:$HOME/.pyenv/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export NVM_DIR="$HOME/.nvm"
+export FZF_BASE=/usr/share/fzf
 
-# ==============================
+# Oh-My-Zsh Configuration
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# Enable Powerlevel10k instant prompt
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Plugin Management
-# ==============================
-# FZF
-[[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
-[[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
-bindkey -M emacs '^R' fzf-history-widget
-bindkey -M viins '^R' fzf-history-widget
+plugins=(
+  git
+  fzf
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+)
 
-# Syntax Highlighting
-[[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && \
-  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Auto-suggestions
-[[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && \
-  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# ==============================
-# Custom Configurations
-# ==============================
-# Git branch parsing for prompt
-parse_git_branch() {
-  git branch --show-current 2>/dev/null
-}
-export PS1="%n@%m %~ \$(parse_git_branch) %# "
+# Source Oh-My-Zsh
+source $ZSH/oh-my-zsh.sh
 
 # ==============================
 # Tool Initializations
@@ -85,12 +57,6 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
     ssh-add ~/.ssh/github 2>/dev/null
 fi
 
-# Starship
-#[[ -t 1 ]] && eval "$(starship init zsh)"
-
-#oh-my-posh
-eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/dracula.omp.json)"
-
 # NVM
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
@@ -102,11 +68,12 @@ ZSH_CONFIG_DIR="$HOME/.config/zsh"
 
 # Source order: env -> functions -> aliases
 [[ -f "$ZSH_CONFIG_DIR/env.zsh" ]] && source "$ZSH_CONFIG_DIR/env.zsh"
-
 if [ -d "$ZSH_CONFIG_DIR/functions" ]; then
     for file in "$ZSH_CONFIG_DIR"/functions/*.zsh; do
         [[ -f "$file" ]] && source "$file"
     done
 fi
-
 [[ -f "$ZSH_CONFIG_DIR/aliases.zsh" ]] && source "$ZSH_CONFIG_DIR/aliases.zsh"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
