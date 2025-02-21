@@ -10,6 +10,9 @@ alias rmrf='rm -rf'
 alias reload='source ~/.zshrc'
 alias tree='tree -la'
 
+#SSH alias for WSL to use sshkeys from 1Password on host
+alias ssh='ssh.exe'
+alias ssh-add='ssh-add.exe'
 
 alias ..='cd ..'
 alias ...='cd ../..'
