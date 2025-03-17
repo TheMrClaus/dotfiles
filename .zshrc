@@ -3,10 +3,12 @@
 # ==============================
 setopt correct
 setopt auto_cd
+setopt hist_expire_dups_first
 setopt hist_ignore_dups
 setopt hist_ignore_space
 setopt hist_reduce_blanks
 setopt hist_verify
+setopt share_history
 
 # History Configuration
 HISTFILE=~/.zsh_history
@@ -41,6 +43,10 @@ plugins=(
   zsh-syntax-highlighting
   zsh-autosuggestions
 )
+
+# completion using arrow keys (based on history)
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
 
 # Source Oh-My-Zsh
 source $ZSH/oh-my-zsh.sh
@@ -77,3 +83,9 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+eval "$(/opt/homebrew/bin/brew shellenv)"
+eval $(thefuck --alias)
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# ---- Zoxide (better cd) ----
+eval "$(zoxide init zsh)"

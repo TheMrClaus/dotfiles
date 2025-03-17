@@ -1,5 +1,5 @@
-alias ll='ls -lah'
-alias ls='ls --color=auto'
+alias ls='eza --icons=always --color=auto'
+alias ll='eza -lah'
 alias grep='grep --color=auto'
 alias la='ls -A'
 alias l='ls -CF'
@@ -11,9 +11,9 @@ alias reload='source ~/.zshrc'
 alias tree='tree -la'
 
 #SSH alias for WSL to use sshkeys from 1Password on host
-alias ssh='ssh.exe'
-alias ssh-add='ssh-add.exe'
-
+#alias ssh='ssh.exe'
+#alias ssh-add='ssh-add.exe'
+alias cd='z'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
