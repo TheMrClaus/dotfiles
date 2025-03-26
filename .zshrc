@@ -66,6 +66,8 @@ fi
 # ==============================
 ZSH_CONFIG_DIR="$HOME/.config/zsh"
 
+source $HOME/.agent-bridge.sh
+
 # Source order: env -> functions -> aliases
 [[ -f "$ZSH_CONFIG_DIR/env.zsh" ]] && source "$ZSH_CONFIG_DIR/env.zsh"
 if [ -d "$ZSH_CONFIG_DIR/functions" ]; then
