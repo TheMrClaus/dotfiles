@@ -11,8 +11,12 @@ alias reload='source ~/.zshrc'
 alias tree='tree -la'
 
 #SSH alias for WSL to use sshkeys from 1Password on host
-alias ssh='ssh.exe'
-alias ssh-add='ssh-add.exe'
+#alias ssh='ssh.exe'
+#alias ssh-add='ssh-add.exe'
+
+alias k='kubectl'
+alias frmonit='flux reconcile kustomization monitoring --with-source'
+alias frmedia='flux reconcile kustomization media --with-source'
 
 alias ..='cd ..'
 alias ...='cd ../..'
