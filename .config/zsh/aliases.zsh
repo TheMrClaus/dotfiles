@@ -18,6 +18,8 @@ alias k='kubectl'
 alias frmonit='flux reconcile kustomization monitoring --with-source'
 alias frmedia='flux reconcile kustomization media --with-source'
 
+alias k8stree='tree ~/k8s-media-stack -L 3 -I ".git|__pycache__|node_modules|*.md|*.sample|*.lock|*.log|COMMIT_EDITMSG|ORIG_HEAD|FETCH_HEAD|index|description|hooks|info|logs|objects|refs|exclude"'
+
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
